@@ -1,0 +1,25 @@
+<ion-view title="New Tea">
+    <ion-content has-tabs="false">
+        <form ng-submit="saveTea()">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Name</span>
+                    <input type="text" placeholder="name of tea" ng-model="tea.name">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Description</span>
+                    <textarea placeholder="Comments" ng-model="tea.description"></textarea>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Brew Time in Minutes: {{tea.brewMinutes}}</span>
+                    <input type="range" name="volume" min="1" max="10" value="1" ng-model="tea.brewMinutes">
+                </label>
+            </div>
+            <button type="submit" class="button button-block button-positive">Save</button>
+        </form>
+        <button class="button button-block button-assertive" ng-click="cancelSave()">
+            Cancel
+        </button>
+    </ion-content>
+</ion-view>

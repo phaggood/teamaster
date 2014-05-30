@@ -1,0 +1,31 @@
+<ion-view title="Tea Master">
+    <ion-content padding="true">
+        <form ng-submit="login()">
+        <div class="card">
+            <div class="item item-divider">
+                Login
+            </div>
+            <div class="item">
+                <div class="list">
+                    <label class="item item-input">
+                        <input type="text" type="email" placeholder="email@server.com" ng-model="creds.email">
+                    </label>
+                    <label class="item item-input">
+                        <input type="password" placeholder="password" ng-model="creds.password">
+                    </label>
+                </div>
+            </div>
+            <div class="item item-divider">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="rememberMe">
+                </label>
+                Remember Me
+            </div>
+            <div class="item item-divider">
+                <input type="submit" id="submit" value="Login" />
+            </div>
+
+        </div>
+        </form>
+    </ion-content>
+</ion-view>

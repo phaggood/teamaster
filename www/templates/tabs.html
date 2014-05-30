@@ -1,0 +1,22 @@
+<ion-tabs class="tabs-icon-top tabs-default">
+  <!-- Teas Tab -->
+  <ion-tab title="Teas" icon="icon ion-home" ui-sref="tab.teas" ui-sref-opts="{reload: true}">
+    <ion-nav-view name="teas-tab"></ion-nav-view>
+  </ion-tab>
+
+    <!-- Add Tea Tab -->
+    <ion-tab title="Add" icon="icon ion-plus" ui-sref="add">
+        <ion-nav-view name="tea-add-tab"></ion-nav-view>
+    </ion-tab>
+
+  <!-- About Tab -->
+  <ion-tab title="About" icon="icon ion-search" ui-sref="tab.about">
+    <ion-nav-view name="about-tab"></ion-nav-view>
+  </ion-tab>
+
+    <!-- Logout (technically *isn't* a tab so ui-obsessives will have fits here)  -->
+    <ion-tab title="Logout" icon="icon ion-arrow-return-left" ui-sref="logout">
+        <ion-nav-view name="logout-tab"></ion-nav-view>
+    </ion-tab>
+
+</ion-tabs>

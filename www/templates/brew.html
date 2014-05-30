@@ -1,0 +1,25 @@
+<ion-view title="{{tea.name}}">
+    <ion-content padding="true">
+        <div class="list card">
+            <div class="item">
+                <h1 style="text-align:center;">{{brewTimeDisplay}}</h1>
+            </div>
+            <div class="item item-body">
+                <img class="full-image" src="img/spincup.gif">
+            </div>
+            <div class="item">
+                <div ng-show="brewing">
+                    <button class="button button-full button-positive" ng-click="cancelBrew()">
+                        Stop Brewing
+                    </button>
+                </div>
+                <div ng-hide="brewing">
+                    <button class="button button-full button-positive" ng-click="startBrew()">
+                        Start Brewing
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

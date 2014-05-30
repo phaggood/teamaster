@@ -1,0 +1,41 @@
+ {
+  "table": [
+    {
+      "name": "tsTeas",
+      "label": "tsTeas",
+      "plural": "tsTeas",
+      "field": [
+        {
+          "name": "id",
+          "label": "id",
+          "type": "id",
+          "size": "11"
+        },
+        {
+          "name": "ownerId",
+          "label": "Owner",
+          "type": "integer",
+          "size": "11"
+        },
+        {
+          "name": "name",
+          "label": "Name",
+          "type": "Text",
+          "size": "255"
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "type": "Text",
+          "size": "1024"
+        },
+        {
+          "name": "brewMinutes",
+          "label": "Brewtime",
+          "type": "integer",
+          "size": "11"
+        }
+      ]
+    }
+  ]
+}

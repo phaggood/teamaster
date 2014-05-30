@@ -1,0 +1,14 @@
+<ion-view title="Tea List">
+    <div class="bar bar-footer bar-dark">
+        <a ui-sref="logout"><button class="button button-clear">Logout</button></a>
+    </div>
+    <ion-content>
+            <ion-list>
+                <ion-item ng-repeat="tea in teas" type="item-text-wrap" href="#/tab/tea/{{tea.id}}">
+                    <h3>{{tea.name}}</h3>
+                    <p>{{tea.description}}</p>
+                    <p>Steep for {{tea.brewMinutes}} minutes</p>
+                </ion-item>
+            </ion-list>
+    </ion-content>
+</ion-view>

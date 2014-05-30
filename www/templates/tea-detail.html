@@ -1,0 +1,19 @@
+<ion-view title="{{tea.name}}">
+  <ion-content padding="true">
+      <div class="card">
+          <div class="item item-divider">
+              <p>{{ tea.name }}</p>
+          </div>
+          <div class="item item-text-wrap">
+              <p>{{ tea.description }}</p>
+              <p>Brew for {{ tea.brewMinutes}} minutes</p>
+          </div>
+          <div class="item item-divider">
+              <a class="button button-small icon ion-arrow-right-b" href="#/tab/brew/{{tea.id}}">Brew</a>
+          </div>
+      </div>
+
+    <p>
+    </p>
+  </ion-content>
+</ion-view>

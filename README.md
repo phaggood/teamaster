@@ -1,4 +1,6 @@
-teamaster
-=========
+ionic-angular-cordova-seed
+==========================
 
-Reference app for tea app
+The perfect starting point for an Ionic project.
+
+- [Ionic Tutorials](http://ionicframework.com/tutorials/)
