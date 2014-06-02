@@ -5,11 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.services', 'teamaster.controllers'])
+angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','ngAudio','teamaster.services', 'teamaster.controllers'])
     .constant('DSP_URL', 'http://ec2-23-22-183-175.compute-1.amazonaws.com/')
     .constant('DSP_API_KEY', 'teamasterapp')
 
     .config(function($stateProvider, $urlRouterProvider) {
+
 
         $stateProvider
 
