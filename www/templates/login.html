@@ -15,11 +15,17 @@
                     </label>
                 </div>
             </div>
+            <div class="item">
+                <div ng-show="loginErrorMessage">{{loginErrorMessage}}</div>
+            </div>
             <div class="item item-divider">
                 <label class="checkbox">
                     <input type="checkbox" ng-model="rememberMe">
+                    Remember Me
                 </label>
-                Remember Me
+            </div>
+            <div class="item item-divider">
+                <button ng-click="guestLogin()">Login as guest</button>
             </div>
             <div class="item item-divider">
                 <input type="submit" id="submit" value="Login" />

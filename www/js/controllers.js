@@ -187,6 +187,7 @@ angular.module('teamaster.controllers', [])
     .controller('AuthCtrl', function($scope, AuthService, $state, $http ){
 
         $scope.rememberMe = false;
+        $scope.loginErrorMessage = "";
 
         // model for login credentials
         $scope.creds = {
@@ -194,8 +195,8 @@ angular.module('teamaster.controllers', [])
             password: ''
         };
 
-        $scope.login = function(){
-            AuthService.login($scope.creds).then(
+        var createSession = function(creds) {
+            AuthService.login(creds).then(
                 function(result) {
                     $http.defaults.headers.common['X-DreamFactory-Session-Token'] = result.session_id;
                     AuthService.initActiveUser(result);
@@ -209,8 +210,18 @@ angular.module('teamaster.controllers', [])
                 function(reject) {
                     AuthService.clearActiveUser();
                     $http.defaults.headers.common['X-DreamFactory-Session-Token'] = ""
+                    $scope.loginErrorMessage = "bad login";
                 }
             )
+        }
+
+        $scope.login = function(){
+            createSession($scope.creds);
+        };
+
+        // this is probably not the best way to set this up, but it works.
+        $scope.login = function(){
+            createSession({email:"tm_guest@spieleware.com", password:"guest"});
         };
 
         $scope.logout = function(){
