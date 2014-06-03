@@ -9,8 +9,11 @@ angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.servic
     .constant('DSP_URL', 'http://ec2-23-22-183-175.compute-1.amazonaws.com/')
     .constant('DSP_API_KEY', 'teamasterapp')
 
-    .config(function($stateProvider, $urlRouterProvider) {
+    .run(function() {
+        FastClick.attach(document.body);
+    })
 
+    .config(function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
 

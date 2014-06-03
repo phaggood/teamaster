@@ -219,7 +219,7 @@ angular.module('teamaster.controllers', [])
         };
 
         // this is probably not the best way to set this up, but it works.
-        $scope.login = function(){
+        $scope.guestLogin = function(){
             createSession({email:"tm_guest@spieleware.com", password:"guest"});
         };
 
