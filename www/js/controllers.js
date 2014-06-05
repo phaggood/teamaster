@@ -121,7 +121,6 @@ angular.module('teamaster.controllers', [])
         var counter = 0;
 
         $scope.brewTimeDisplay = "00:00";
-        $scope.brewing = false;
 
         var playSound = function(str) {
             console.log("playing " + str);
@@ -129,16 +128,52 @@ angular.module('teamaster.controllers', [])
             audio.play();
         }
 
+        var cancelBrew = function(){
+            $timeout.cancel(mytimeout);
+            $scope.brewComplete = false;
+             $scope.brewCancel = true;
+             $scope.brewing = false;
+             $scope.brewReady = false;
+            $scope.brewTimeDisplay = "Brewing cancelled";
+            playSound("cancel");
+        }
+
+        var startBrew = function(){
+            $scope.brewComplete = false;
+            $scope.brewCancel = false;
+            $scope.brewing = true;
+            $scope.brewReady = false;
+            counter = $scope.tea.brewMinutes*60 * 1000;
+            mytimeout = $timeout($scope.onTimeout,1000);
+            $scope.brewTimeDisplay = "Brewing";
+        }
+
+        var completeBrew = function(){
+            $scope.brewComplete = true;
+            $scope.brewCancel = false;
+            $scope.brewing = false;
+            $scope.brewReady = false;
+            playSound("done");
+            $scope.brewTimeDisplay = "Brewing complete";
+        }
+
+        var readyBrew = function(msg){
+            $scope.brewComplete = false;
+            $scope.brewCancel = false;
+            $scope.brewing = false;
+            $scope.brewReady = true;
+            $scope.brewTimeDisplay = msg;
+        }
+
         var init = function() {
             TeaService.tea(id).then(
                 function(result) {
                     $scope.tea = result;
-                    $scope.brewTimeDisplay = BrewService.msToTime($scope.tea.brewMinutes*60 * 1000);
-                    $scope.errMsg = "";
+                    readyBrew("Ready: " + BrewService.msToTime($scope.tea.brewMinutes*60 * 1000));
                 },
                 function(reject) {
                     $scope.tea = [];
-                    $scope.errMsg = "unable to access tea";
+                    $scope.brewTimeDisplay = "unable to access tea";
                 }
             );
         };
@@ -150,24 +185,17 @@ angular.module('teamaster.controllers', [])
                 $scope.brewTimeDisplay = BrewService.msToTime(counter);
             } else {
                 $timeout.cancel(mytimeout);
-                $scope.brewing = false;
-                playSound("done");
-                $scope.brewTimeDisplay = "Brewing complete";
+                completeBrew();
             }
-        } ;
+        };
 
 
         $scope.startBrew = function(){
-            counter = $scope.tea.brewMinutes*60 * 1000;
-            mytimeout = $timeout($scope.onTimeout,1000);
-            $scope.brewing = true;
+            startBrew();
         };
 
         $scope.cancelBrew = function() {
-            $timeout.cancel(mytimeout);
-            playSound("cancel");
-            $scope.brewTimeDisplay = "Brewing cancelled";
-            $scope.brewing = false;
+            cancelBrew();
         };
 
         init();

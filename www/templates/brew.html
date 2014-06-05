@@ -4,8 +4,20 @@
             <div class="item">
                 <h1 style="text-align:center;">{{brewTimeDisplay}}</h1>
             </div>
+
             <div class="item item-body">
-                <img class="full-image" src="img/spincup.gif">
+                <div ng-show="brewing">
+                    <img class="full-image" src="img/spincup.gif">
+                </div>
+                <div ng-show="brewReady">
+                    <img class="full-image" src="img/tea_ready.jpg">
+                </div>
+                <div ng-show="brewCancel">
+                    <img class="full-image" src="img/tea_cancel.jpg">
+                </div>
+                <div ng-show="brewComplete">
+                    <img class="full-image" src="img/tea_complete.jpg">
+                </div>
             </div>
             <div class="item">
                 <div ng-show="brewing">
