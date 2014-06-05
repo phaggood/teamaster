@@ -93,6 +93,6 @@ angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.servic
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/splash');
 
     });
