@@ -9,8 +9,24 @@ angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.servic
     .constant('DSP_URL', 'http://ec2-23-22-183-175.compute-1.amazonaws.com/')
     .constant('DSP_API_KEY', 'teamasterapp')
 
-    .run(function() {
-        FastClick.attach(document.body);
+    .run(function($rootScope,DreamFactory,$timeout) {
+
+            //FastClick.attach(document.body);
+            var tCount = 0;
+            var appReady = false;
+            // allow 5 seconds for init
+            while (tCount < 4) {
+                $timeout(function () {
+                    if (DreamFactory.isReady()) {
+                        //appReady = true;
+                        tCount = 5;
+                        $rootScope.$broadcast('appInit', {appState:true});
+                    }
+                }, 1000);
+                tCount++;
+            }
+
+
     })
 
     .config(function($stateProvider, $urlRouterProvider) {

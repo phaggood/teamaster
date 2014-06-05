@@ -1,26 +1,18 @@
 angular.module('teamaster.controllers', [])
 
-    .controller('SplashController',["$scope","$state","DreamFactory","$timeout", function($scope, $state,DreamFactory,$timeout) {
-        var tCount = 0;
-        $scope.initFail = false;
+    .controller('SplashController',["$scope","$state", function($scope, $state) {
+        // catch the appState from module.run()
 
-        // Dreamfactory gets 5secs to return ready
-        var init = function() {
-            while (tCount < 4) {
-                $timeout(function () {
-                    if (DreamFactory.isReady()) {
-                        // Make sure you see the splash screen for at least 2 secs
-                        if (tCount > 2) {
-                            $state.go('login');
-                        }
-                    }
-                }, 1000);
-                tCount++;
+
+        $scope.$on('appInit', function(event, args) {
+            console.log("appstate " + args.appState);
+            if (args.appState==true) {
+                $scope.initFail = false;
+                $state.go('login');
+            } else {
+                $scope.initFail = true;  // splashscreen displays init fail msg
             }
-            $scope.initFail = true;
-        };
-
-        init();
+        });
 
     }])
 
