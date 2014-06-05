@@ -197,6 +197,7 @@ angular.module('teamaster.controllers', [])
         var createSession = function(creds) {
             AuthService.login(creds).then(
                 function(result) {
+                    console.log("logged in " + creds.email);
                     $http.defaults.headers.common['X-DreamFactory-Session-Token'] = result.session_id;
                     AuthService.initActiveUser(result);
                     if ($scope.rememberMe==true) {
@@ -220,7 +221,8 @@ angular.module('teamaster.controllers', [])
 
         // this is probably not the best way to set this up, but it works.
         $scope.guestLogin = function(){
-            createSession({email:"tm_guest@spieleware.com", password:"guest"});
+            var creds = {email:"tm_guest@spieleware.com", password:"guest"}
+            createSession(creds);
         };
 
         $scope.logout = function(){
