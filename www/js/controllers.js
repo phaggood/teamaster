@@ -1,9 +1,8 @@
 angular.module('teamaster.controllers', [])
 
-    .controller('SplashController',["$scope","$state", function($scope, $state) {
+    .controller('SplashController',["$scope","$state","$cordovaNetwork", function($scope, $state, $cordovaNetwork) {
+
         // catch the appState from module.run()
-
-
         $scope.$on('appInit', function(event, args) {
             console.log("appstate " + args.appState);
             if (args.appState==true) {
@@ -13,6 +12,20 @@ angular.module('teamaster.controllers', [])
                 $scope.initFail = true;  // splashscreen displays init fail msg
             }
         });
+
+        // determine online status
+        var init = function(){
+            var type = $cordovaNetwork.getNetwork();
+            var isOnline = $cordovaNetwork.isOnline();
+            if (isOnline == false) {
+                // set offline mode
+                alert("Offline");
+            }
+
+        };
+
+        // controller init on instantiation
+        init();
 
     }])
 
@@ -115,17 +128,23 @@ angular.module('teamaster.controllers', [])
     // Right now this uses a dom method to find the audio control and play the sound; this isn't very
     // 'Angular' and will be changed as soon as I figure out directives
     // http://jsfiddle.net/aarongloege/K8J26/light/
-    .controller("BrewCtrl", function($scope,$timeout, $stateParams,BrewService,TeaService){
+    .controller("BrewCtrl", function($scope,$timeout, $stateParams,BrewService,TeaService,$cordovaVibration){
         var id = $stateParams.id;
         var mytimeout = null;
         var counter = 0;
 
         $scope.brewTimeDisplay = "00:00";
 
+        var vibrate = function() {
+                // Vibrate 1/2 sec
+                $cordovaVibration.vibrate(500);
+        }
+
+
         var playSound = function(str) {
-            console.log("playing " + str);
             audio = document.getElementById(str);
             audio.play();
+            vibrate();
         }
 
         var cancelBrew = function(){
