@@ -5,15 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.services', 'teamaster.controllers'])
+angular.module('teamaster', ['ionic', 'timer','ngCordova','ngDreamFactory','teamaster.services', 'teamaster.controllers'])
     .constant('DSP_URL', 'http://ec2-23-22-183-175.compute-1.amazonaws.com/')
     .constant('DSP_API_KEY', 'teamasterapp')
 
-    .run(function($rootScope,DreamFactory,$timeout) {
+    .run(function($rootScope,DreamFactory,$timeout,$ionicPlatform) {
 
-            //FastClick.attach(document.body);
-            var tCount = 0;
-            var appReady = false;
+        var tCount = 0;
+        var appReady = false;
+
+        $ionicPlatform.ready(function() {
             // allow 5 seconds for init
             while (tCount < 4) {
                 $timeout(function () {
@@ -25,8 +26,7 @@ angular.module('teamaster', ['ionic', 'timer','ngDreamFactory','teamaster.servic
                 }, 1000);
                 tCount++;
             }
-
-
+        });
     })
 
     .config(function($stateProvider, $urlRouterProvider) {

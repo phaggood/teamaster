@@ -15,7 +15,7 @@ angular.module('teamaster.controllers', [])
 
         // determine online status
         var init = function(){
-            var type = $cordovaNetwork.getNetwork();
+            //var type = $cordovaNetwork.getNetwork();
             var isOnline = $cordovaNetwork.isOnline();
             if (isOnline == false) {
                 // set offline mode
@@ -25,7 +25,7 @@ angular.module('teamaster.controllers', [])
         };
 
         // controller init on instantiation
-        init();
+        //init();
 
     }])
 
@@ -142,8 +142,9 @@ angular.module('teamaster.controllers', [])
 
 
         var playSound = function(str) {
-            audio = document.getElementById(str);
-            audio.play();
+            //audio = document.getElementById(str);
+            //audio.play();
+            $cordovaDialogs.beep(2);
             vibrate();
         }
 
