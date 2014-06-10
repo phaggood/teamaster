@@ -128,7 +128,7 @@ angular.module('teamaster.controllers', [])
     // Right now this uses a dom method to find the audio control and play the sound; this isn't very
     // 'Angular' and will be changed as soon as I figure out directives
     // http://jsfiddle.net/aarongloege/K8J26/light/
-    .controller("BrewCtrl", function($scope,$timeout, $stateParams,BrewService,TeaService,$cordovaVibration){
+    .controller("BrewCtrl", function($scope,$timeout, $stateParams,BrewService,TeaService,$cordovaVibration,$cordovaDialogs){
         var id = $stateParams.id;
         var mytimeout = null;
         var counter = 0;
