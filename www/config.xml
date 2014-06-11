@@ -16,4 +16,6 @@
     <icon src="icon.png" />
     <gap:platform name="android" />
     <preference name="android-installLocation" value="auto" /> 
+    <gap:splash src="splash.png" width="320" height="480" />
+
 </widget>
