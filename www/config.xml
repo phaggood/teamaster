@@ -15,4 +15,3 @@
     <preference name="DisallowOverscroll" value="true" />
     <icon src="icon.png" />
 </widget>
-<gap:platform name="android" />
