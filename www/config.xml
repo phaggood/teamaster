@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ionicframework.weather" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>TeaMaster</name>
+    <description>
+        A tea-timer app
+    </description>
+    <author email="phaggood@spieleware.com" href="http://www.spieleware.com">
+      Codezilla
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <gap:platform name="android" />
+    <icon src="icon.png" />
+</widget>
