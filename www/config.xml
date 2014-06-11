@@ -14,5 +14,4 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <gap:platform name="android" />
-    <icon src="icon.png" />
 </widget>
