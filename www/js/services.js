@@ -28,7 +28,18 @@ angular.module('teamaster.services', [])
 
     .factory('TeaService', ['$q', 'DreamFactory','AuthService', function($q, DreamFactory,AuthService) {
 
+        var guest_mode = false;
+
         return {
+
+            guestMode: function(val) {
+                guest_mode = val;
+            },
+
+            isGuestMode: function() {
+                return  guest_mode;
+            },
+
             teas: function() {
                 var deferred = $q.defer();
 

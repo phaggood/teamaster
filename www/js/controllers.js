@@ -63,6 +63,18 @@ angular.module('teamaster.controllers', [])
     })
 
     .controller('TeaAddCtrl', function($scope, AuthService, TeaService, $state, $stateParams ) {
+        // not allowed in guestmode
+        if (TeaService.isGuestMode()){
+            $state.go('tab.teas');
+        };
+
+        // repond to broadcast turnign on guestmode
+        $scope.on("guestmode:on") {
+            TeaService.guestMode(true);
+        };
+
+
+
         $scope.tea = {};
         var init = function() {
             // if id != null this is an update not an add
@@ -261,7 +273,8 @@ angular.module('teamaster.controllers', [])
 
         // this is probably not the best way to set this up, but it works.
         $scope.guestLogin = function(){
-            var creds = {email:"tm_guest@spieleware.com", password:"guest"}
+            var creds = {email:"tm_guest@spieleware.com", password:"guest"};
+            $rootScope.$broadcast('guestmode:on');
             createSession(creds);
         };
 
@@ -269,5 +282,6 @@ angular.module('teamaster.controllers', [])
             $scope.activeUser = AuthService.logout();
             AuthService.clearActiveUser();
             $rootScope.$broadcast('user:logout');
+            $rootScope.$broadcast('guestmode:off');
         }
     });
