@@ -9,10 +9,12 @@
         <ion-nav-view name="tea-add-tab"></ion-nav-view>
     </ion-tab>
 
+  <div ng-controller="addTabCtrl" ng-hide="isGuest">
   <!-- About Tab -->
   <ion-tab title="About" icon="icon ion-search" ui-sref="tab.about">
     <ion-nav-view name="about-tab"></ion-nav-view>
   </ion-tab>
+  </div>
 
     <!-- Logout (technically *isn't* a tab so ui-obsessives will have fits here)  -->
     <ion-tab title="Logout" icon="icon ion-arrow-return-left" ui-sref="logout">

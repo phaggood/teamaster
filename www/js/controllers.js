@@ -1,34 +1,5 @@
 angular.module('teamaster.controllers', [])
 
-    .controller('SplashController',["$scope","$state","$cordovaNetwork", function($scope, $state, $cordovaNetwork) {
-
-        // catch the appState from module.run()
-        $scope.$on('appInit', function(event, args) {
-            console.log("appstate " + args.appState);
-            if (args.appState==true) {
-                $scope.initFail = false;
-                $state.go('login');
-            } else {
-                $scope.initFail = true;  // splashscreen displays init fail msg
-            }
-        });
-
-        // determine online status
-        var init = function(){
-            //var type = $cordovaNetwork.getNetwork();
-            var isOnline = $cordovaNetwork.isOnline();
-            if (isOnline == false) {
-                // set offline mode
-                alert("Offline");
-            }
-
-        };
-
-        // controller init on instantiation
-        //init();
-
-    }])
-
     .controller('LogoutCtrl', function($scope, AuthService, $state ) {
 
         $scope.logout = function(){
@@ -62,6 +33,10 @@ angular.module('teamaster.controllers', [])
         init();
     })
 
+    .controller('addTabCtrl', function($scope, TeaService) {
+        $scope.isGuest = TeaService.isGuestMode();
+    })
+
     .controller('TeaAddCtrl', function($scope, AuthService, TeaService, $state, $stateParams ) {
         // not allowed in guestmode
         if (TeaService.isGuestMode()){
@@ -69,11 +44,9 @@ angular.module('teamaster.controllers', [])
         };
 
         // repond to broadcast turnign on guestmode
-        $scope.on("guestmode:on") {
+        $scope.$on('guestmode.on', function() {
             TeaService.guestMode(true);
-        };
-
-
+        });
 
         $scope.tea = {};
         var init = function() {
@@ -235,7 +208,7 @@ angular.module('teamaster.controllers', [])
 
     })
 
-    .controller('AuthCtrl', function($scope, AuthService, $state, $http ){
+    .controller('AuthCtrl', function($scope, AuthService, $rootScope,$cordovaNetwork, $state, $http ){
 
         $scope.rememberMe = false;
         $scope.loginErrorMessage = "";
@@ -274,7 +247,7 @@ angular.module('teamaster.controllers', [])
         // this is probably not the best way to set this up, but it works.
         $scope.guestLogin = function(){
             var creds = {email:"tm_guest@spieleware.com", password:"guest"};
-            $rootScope.$broadcast('guestmode:on');
+            $rootScope.$broadcast('guestmode.on');
             createSession(creds);
         };
 
@@ -282,6 +255,30 @@ angular.module('teamaster.controllers', [])
             $scope.activeUser = AuthService.logout();
             AuthService.clearActiveUser();
             $rootScope.$broadcast('user:logout');
-            $rootScope.$broadcast('guestmode:off');
+            $rootScope.$broadcast('guestmode.off');
         }
+
+        // catch the appState from module.run()
+        $scope.$on('appInit', function(event, args) {
+            console.log("appstate " + args.appState);
+            if (args.appState==true) {
+                $scope.initFail = false;
+                $state.go('login');
+            } else {
+                $scope.initFail = true;  // splashscreen displays init fail msg
+            }
+        });
+
+        // determine online status
+        var init = function(){
+            //var type = $cordovaNetwork.getNetwork();
+            var isOnline = $cordovaNetwork.isOnline();
+            if (isOnline == false) {
+                // set offline mode
+                alert("Offline");
+            }
+
+        };
+
+
     });
